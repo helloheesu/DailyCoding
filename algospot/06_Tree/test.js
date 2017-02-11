@@ -55,7 +55,7 @@ describe('21. 트리의 구현과 순회', function() {
 				expect(tree.root instanceof Node).to.be.true;
 			});
 
-			it('루트가 아닌 자식노드 R을 루트로 가지는 서브트리를 정의할 수 있다.', function() {
+			it('루트가 아닌 자식노드 N을 루트로 가지는 서브트리를 정의할 수 있다.', function() {
 				// given
 				var root = new Node(3);
 				root.leftChild = new Node();
@@ -132,7 +132,7 @@ describe('21. 트리의 구현과 순회', function() {
 			});
 
 			describe('서브트리도 전위 순회를 할 수 있다.', function() {
-				it('값이 없는 자식노드 R을 루트로 가지는 서브트리의 전위 순회 결과는 []이다.', function() {
+				it('값이 없는 자식노드 N을 루트로 가지는 서브트리의 전위 순회 결과는 []이다.', function() {
 					// given
 					var root = new Node(3);
 					root.leftChild = new Node();
@@ -145,7 +145,7 @@ describe('21. 트리의 구현과 순회', function() {
 					expect(subtree.getPreordered()).to.be.an('array');
 				});
 
-				it('값이 7인 자식노드 R을 루트로 가지는 서브트리의 전위 순회 결과는 [7]이다.', function() {
+				it('값이 7인 자식노드 N을 루트로 가지는 서브트리의 전위 순회 결과는 [7]이다.', function() {
 					// given
 					var root = new Node(3);
 					root.leftChild = new Node(7);
@@ -159,13 +159,37 @@ describe('21. 트리의 구현과 순회', function() {
 				});
 			});
 
-			xdescribe('루트가 29이고 왼쪽 서브트리가 다음과 같을 때, 서브트리의 전위 순회 결과와 합쳐서 보여줄 수 있다.', function() {
+			describe('루트(V)가 29이고 왼쪽 서브트리가 다음과 같을 때, 서브트리의 전위 순회 결과와 합쳐서 보여줄 수 있다.', function() {
+				var root;
+				var tree;
+
 				beforeEach(function() {
+					root = new Node(29);
+					tree = new Tree(root);
 				});
+
 				afterEach(function() {
 				});
 
-				// it('왼쪽 자식이 7이고 루트가 3인 서브트리의 전위')
+				it('서브트리의 루트가 값이 없는 단일 노드(LV)일 때 전위 순회 결과는 [29(V)]이다.', function() {
+					// given
+					tree.root.leftChild = new Node();
+
+					// when
+
+					// then
+					expect(tree.getPreordered()).to.be.eql([29]);
+				});
+
+				it('서브트리의 루트가 값이 3인 단일 노드(LV)일 때 전위 순회 결과는 [29(V), 3(LV)]이다.', function() {
+					// given
+					tree.root.leftChild = new Node(3);
+
+					// when
+
+					// then
+					expect(tree.getPreordered()).to.be.eql([29, 3]);
+				});
 			});
 		});
 

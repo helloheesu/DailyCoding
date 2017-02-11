@@ -10,21 +10,23 @@ function Tree(root) {
 
 Tree.prototype.getPreordered = function() {
     var root = this.root;
+
+
     if (root.value === null) {
         return [];
     }
 
-    var result = [];
 
-    result.push(root.value);
-
+    var leftResult = [];
     if (root.leftChild) {
-        result.push(root.leftChild.value);
+        leftResult = new Tree(root.leftChild).getPreordered()
     }
 
+    var rightResult = [];
     if (root.rightChild) {
-        result.push(root.rightChild.value);
+        rightResult = new Tree(root.rightChild).getPreordered()
     }
 
-    return result;
+
+    return [].concat(root.value, leftResult, rightResult);
 };
