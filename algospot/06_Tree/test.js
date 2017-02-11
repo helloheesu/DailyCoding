@@ -4,7 +4,7 @@ describe('21. 트리의 구현과 순회', function() {
 	// afterEach(function() {
 	// });
 
-	describe('자료 구조 정의', function() {
+	describe('이진 트리 : 자료 구조 정의', function() {
 		describe('노드는,', function() {
 			it('처음 생성하면 비어있다.', function() {
 				// given
@@ -13,14 +13,39 @@ describe('21. 트리의 구현과 순회', function() {
 				// when
 
 				// then
+				expect(node.value).to.be.eql(null);
 			});
 
 			it('값을 가질 수 있다.', function() {
 				// given
+				var node = new Node(3);
 
 				// when
 
 				// then
+				expect(node.value).to.be.eql(3);
+			});
+
+			it('값을 바꿀 수 있다.', function() {
+				// given
+				var node = new Node(3);
+
+				// when
+				node.value = 7;
+
+				// then
+				expect(node.value).to.be.eql(7);
+			});
+
+			it('자식을 가질 수 있다.', function() {
+				// given
+				var node = new Node(3);
+
+				// when
+				node.leftChild = new Node(7);
+
+				// then
+				expect(node.leftChild.value).to.be.eql(7);
 			});
 		});
 
@@ -49,10 +74,14 @@ describe('21. 트리의 구현과 순회', function() {
 
 			it('값을 가지는 노드를 루트로 가질 수 있다.', function() {
 				// given
+				var tree = new Tree();
+				var node = new Node(3);
 
 				// when
+				tree.root = node;
 
 				// then
+				expect(tree.root.value).to.be.eql(3);
 			});
 		});
 
