@@ -50,38 +50,28 @@ describe('21. 트리의 구현과 순회', function() {
 		});
 
 		describe('트리는,', function() {
-			it('처음 생성하면 비어있다.', function() {
+			it('트리는 1개 이상의 노드를 가진다.', function() {
 				// given
-				var tree = new Tree();
 
 				// when
+				var tree = new Tree();
 
 				// then
-				expect(tree.root).to.be.eql(null);
+				expect(tree.root instanceof Node).to.be.true;
 			});
 
-			it('트리는 빈 노드를 루트로 가질 수 있다.', function() {
+			it('루트가 아닌 자식노드 R을 루트로 가지는 서브트리를 정의할 수 있다.', function() {
 				// given
-				var tree = new Tree();
+				var root = new Node(3);
+				root.leftChild = new Node();
+				var tree = new Tree(root);
 
 				// when
-				var emptyNode = new Node();
-				tree.root = emptyNode;
+				var subtree = new Tree(tree.root.leftChild);
 
 				// then
-				expect(tree.root).to.be.eql(emptyNode);
-			});
-
-			it('값을 가지는 노드를 루트로 가질 수 있다.', function() {
-				// given
-				var tree = new Tree();
-				var node = new Node(3);
-
-				// when
-				tree.root = node;
-
-				// then
-				expect(tree.root.value).to.be.eql(3);
+				expect(subtree instanceof Tree).to.be.true;
+				expect(subtree.root instanceof Node).to.be.true;
 			});
 		});
 

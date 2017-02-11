@@ -4,8 +4,8 @@ function Node(value) {
     this.rightChild = null;
 }
 
-function Tree() {
-    this.root = null;
+function Tree(root) {
+    this.root = root || new Node();
 }
 
 Tree.prototype.getPreordered = function() {
