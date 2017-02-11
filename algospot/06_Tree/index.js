@@ -9,14 +9,18 @@ function Tree(root) {
 }
 
 Tree.prototype.getPreordered = function() {
-    var result = [];
     var root = this.root;
+    if (root.value === null) {
+        return [];
+    }
+
+    var result = [];
+
+    result.push(root.value);
 
     if (root.leftChild) {
         result.push(root.leftChild.value);
     }
-
-    result.push(root.value);
 
     if (root.rightChild) {
         result.push(root.rightChild.value);
