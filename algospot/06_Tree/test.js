@@ -85,21 +85,53 @@ describe('21. 트리의 구현과 순회', function() {
 			});
 		});
 
-		describe('트리가 주어지면 전위 순회할 수 있다.', function() {
-			it('단일 노드(V)가 주어지면 전위 순회 결과는 V이다.', function() {
-				// 
+		describe('트리의 루트가,', function() {
+			it('단일 노드(V)이면 전위 순회 결과는 [V]이다.', function() {
+				// given
+				var tree = new Tree();
+				tree.root = new Node(3);
+
+				// when
+
+				// then
+				expect(tree.getPreordered()).to.be.eql([3]);
 			});
 
-			it('왼쪽 자식(L)만 있는 노드(V)가 주어지면 전위 순회 결과는 VL이다.', function() {
-				// 
+			it('왼쪽 자식(L)을 가지는 노드(V)이면 전위 순회 결과는 [V, L]이다.', function() {
+				// given
+				var tree = new Tree();
+				tree.root = new Node(3);
+				tree.root.leftChild = new Node(7);
+
+				// when
+
+				// then
+				expect(tree.getPreordered()).to.be.eql([7, 3]);
 			});
 
-			it('오른쪽 자식(R)만 있는 노드(V)가 주어지면 전위 순회 결과는 VR이다.', function() {
-				// 
+			it('오른쪽 자식(R)을 가지는 노드(V)이면 전위 순회 결과는 [V, R]이다.', function() {
+				// given
+				var tree = new Tree();
+				tree.root = new Node(3);
+				tree.root.rightChild = new Node(7);
+
+				// when
+
+				// then
+				expect(tree.getPreordered()).to.be.eql([3, 7]);
 			});
 
 			it('양쪽 자식이 모두(L, R)만 있는 노드(V)가 주어지면 전위 순회 결과는 VLR이다.', function() {
-				// 
+				// given
+				var tree = new Tree();
+				tree.root = new Node(3);
+				tree.root.leftChild = new Node(7);
+				tree.root.rightChild = new Node(10);
+
+				// when
+
+				// then
+				expect(tree.getPreordered()).to.be.eql([7, 3, 10]);
 			});
 		});
 

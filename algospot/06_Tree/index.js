@@ -8,6 +8,19 @@ function Tree() {
     this.root = null;
 }
 
-// function toPostorder(preorder, inorder) {
-//     // body...
-// }
+Tree.prototype.getPreordered = function() {
+    var result = [];
+    var root = this.root;
+
+    if (root.leftChild) {
+        result.push(root.leftChild.value);
+    }
+
+    result.push(root.value);
+
+    if (root.rightChild) {
+        result.push(root.rightChild.value);
+    }
+
+    return result;
+};
