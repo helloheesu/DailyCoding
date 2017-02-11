@@ -162,18 +162,20 @@ describe('21. 트리의 구현과 순회', function() {
 			describe('루트(V)가 29이고 왼쪽 서브트리가 다음과 같을 때, 서브트리의 전위 순회 결과와 합쳐서 보여줄 수 있다.', function() {
 				var root;
 				var tree;
+				var leftChild;
 
 				beforeEach(function() {
 					root = new Node(29);
 					tree = new Tree(root);
+					leftChild = new Node();
+					root.leftChild = leftChild;
 				});
 
 				afterEach(function() {
 				});
 
-				it('서브트리의 루트가 값이 없는 단일 노드(LV)일 때 전위 순회 결과는 [29(V)]이다.', function() {
+				it('왼쪽 서브트리의 루트가 값이 없는 단일 노드(LV)일 때 전위 순회 결과는 [29(V)]이다.', function() {
 					// given
-					tree.root.leftChild = new Node();
 
 					// when
 
@@ -181,14 +183,48 @@ describe('21. 트리의 구현과 순회', function() {
 					expect(tree.getPreordered()).to.be.eql([29]);
 				});
 
-				it('서브트리의 루트가 값이 3인 단일 노드(LV)일 때 전위 순회 결과는 [29(V), 3(LV)]이다.', function() {
+				it('왼쪽 서브트리의 루트가 값이 3인 단일 노드(LV)일 때 전위 순회 결과는 [29(V), 3(LV)]이다.', function() {
 					// given
-					tree.root.leftChild = new Node(3);
+					leftChild.value = 3;
 
 					// when
 
 					// then
 					expect(tree.getPreordered()).to.be.eql([29, 3]);
+				});
+
+				it('왼쪽 서브트리가 루트의 값은 3(LV), 왼쪽 자식의 값은 7(LL)일 때 전위 순회 결과는 [29(V), 3(LV), 7(LL)]이다.', function() {
+					// given
+					leftChild.value = 3;
+					leftChild.leftChild = new Node(7);
+
+					// when
+
+					// then
+					expect(tree.getPreordered()).to.be.eql([29, 3, 7]);
+				});
+
+				it('왼쪽 서브트리가 루트의 값은 3(LV), 오른쪽 자식의 값은 7(LR)일 때 전위 순회 결과는 [29(V), 3(LV), 7(LR)]이다.', function() {
+					// given
+					leftChild.value = 3;
+					leftChild.rightChild = new Node(7);
+
+					// when
+
+					// then
+					expect(tree.getPreordered()).to.be.eql([29, 3, 7]);
+				});
+
+				it('왼쪽 서브트리가 루트의 값은 3(LV), 왼쪽 자식의 값은 7(LL), 오른쪽 자식의 값은 10(LR)일 때 전위 순회 결과는 [29(V), 3(LV), 7(LL), 10(LR)]이다.', function() {
+					// given
+					leftChild.value = 3;
+					leftChild.leftChild = new Node(7);
+					leftChild.rightChild = new Node(10);
+
+					// when
+
+					// then
+					expect(tree.getPreordered()).to.be.eql([29, 3, 7, 10]);
 				});
 			});
 		});
