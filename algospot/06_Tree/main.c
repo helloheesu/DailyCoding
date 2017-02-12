@@ -22,27 +22,15 @@ int main(int argc, char const *argv[])
 		getInput(preordered, nodeNum);
 		getInput(inordered, nodeNum);
 
-// DEBUG
-		for (int i = 0; i < nodeNum; ++i)
-		{
-			printf("%d\t", preordered[i]);
-		}
-		printf("HOHOHO\n");
 
-		for (int i = 0; i < nodeNum; ++i)
-		{
-			printf("%d\t", inordered[i]);
-		}
-		printf("HAHAHA\n");
-// DEBUG
 	}
 
 	return 0;
 }
 
-void getInput(int *inputArray, const int INPUT_NUM)
+void getInput(int *inputArray, const int inputNum)
 {
-	for (int i = 0; i < INPUT_NUM; ++i)
+	for (int i = 0; i < inputNum; ++i)
 	{
 		scanf("%d", &inputArray[i]);
 	}
