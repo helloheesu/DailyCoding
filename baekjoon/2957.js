@@ -30,17 +30,21 @@ Solution.prototype.insert = function(key, parentKey) {
 	};
 };
 
-Solution.prototype.solve = function() {
+Solution.prototype.initTree = function() {
 	this.treeLen = this.getInput();
-	this.tree = new Array(treeLen);
+	this.tree = new Array(this.treeLen);
+};
+
+Solution.prototype.solve = function() {
+	this.initTree();
 	var currentKey;
 
-	for (var currentNodeNum = 0; currentNodeNum < treeLen; currentNodeNum++) {
-		currentKey = this.getInput();
-		this.result += getParentHeight(currentKey);
-		this.insert(currentKey);
-		this.print(result++);
-	}
+	// for (var currentNodeNum = 0; currentNodeNum < treeLen; currentNodeNum++) {
+	// 	currentKey = this.getInput();
+	// 	this.result += getParentHeight(currentKey);
+	// 	this.insert(currentKey);
+	// 	this.print(result++);
+	// }
 };
 
 	// function getParentHeight(key) {
