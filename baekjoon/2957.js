@@ -1,45 +1,38 @@
 // a[key] = {hasLeft:false, hasRight:false}
 
 var Solution = (function() {
-	var maxNodeNum;
-	var tree;
-	var rootKey;
+	var maxNodeNum = 0;
+	var currentNodeNum = 0;
+	var tree = {};
+	var result = 0;
+
+	function init() {
+		maxNodeNum = 0;
+		currentNodeNum = 0;
+		tree = {};
+		result = 0;
+	}
 
 	function getInput() {
 		return parseInt(readline());
 	}
-	function print(value) {
+
+	function output(value) {
 		print(value);
 	}
 
 	function solve() {
-		var currentKey;
-		var currentNodeNum = 0;
-		var insertCallCount = 0;
-
 		maxNodeNum = this.getInput();
-		tree = new Array(maxNodeNum);
-
-		rootKey = this.getInput() - 1;
-		tree[rootKey] = {hasLeft: false, hasRight: false};
-		insertCallCount += 0;
-		currentNodeNum++;
-		this.print(insertCallCount);
 
 		for (; currentNodeNum < maxNodeNum; currentNodeNum++) {
-			insertCallCount += 1;
-			this.print(insertCallCount);
-			// currentKey = getInput() - 1;
+			this.print(result++);
 		}
 	}
 
-	// function getClosestKeys(key) {
-	// 	// body...
-	// }
-
 	return {
+		"init": init, // for test
 		"solve": solve,
 		"getInput": getInput,
-		"print": print
+		"print": output
 	};
 })();

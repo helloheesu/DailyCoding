@@ -3,24 +3,23 @@
 
 describe('2957번: 이진 탐색 트리', function() {
 	var inputs;
-	var outputs = [];
-	var getInput = [];
-	var print;
+	var outputs;
 
 	beforeEach(function() {
-		getInput = sinon.stub(Solution, "getInput", function() {
+		Solution.init();
+		inputs = [];
+		outputs = [];
+
+		sinon.stub(Solution, "getInput", function() {
 			var input = inputs.shift();
 			return input;
 		});
-		print = sinon.stub(Solution, "print", function(value) {
+		sinon.stub(Solution, "print", function(value) {
 			outputs.push(value);
 		});
 	});
 
 	afterEach(function() {
-		inputs = [];
-		outputs = [];
-
 		Solution.getInput.restore();
 		Solution.print.restore();
 	});
@@ -59,6 +58,9 @@ describe('2957번: 이진 탐색 트리', function() {
 		Solution.solve();
 
 		// then
-		expect(outputs[2]).to.be.eql(2);
+		expect(outputs.shift()).to.be.eql(0);
+		expect(outputs.shift()).to.be.eql(1);
+		expect(outputs.shift()).to.be.eql(2);
+		// expect(outputs[2]).to.be.eql(2);
 	});
 });
