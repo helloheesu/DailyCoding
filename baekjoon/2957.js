@@ -1,15 +1,12 @@
 // a[key] = {hasLeft:false, hasRight:false}
 
 var Solution = (function() {
-	var maxNodeNum = 0;
-	var currentNodeNum = 0;
-	var tree = {};
+	var tree = [];
+	var treeLen;
 	var result = 0;
 
-	function init() {
-		maxNodeNum = 0;
-		currentNodeNum = 0;
-		tree = {};
+	function reset() {
+		tree = null;
 		result = 0;
 	}
 
@@ -22,17 +19,48 @@ var Solution = (function() {
 	}
 
 	function solve() {
-		maxNodeNum = this.getInput();
+		treeLen = this.getInput();
+		tree = new Array(treeLen);
+		var currentKey;
 
-		for (; currentNodeNum < maxNodeNum; currentNodeNum++) {
+		for (var currentNodeNum = 0; currentNodeNum < treeLen; currentNodeNum++) {
+			currentKey = this.getInput();
+			result += getParentHeight(currentKey);
+			insert(currentKey);
 			this.print(result++);
 		}
 	}
 
+	// function getParentHeight(key) {
+	// 	var closestLeft;
+	// 	var closestRight;
+	// 	var shorterGap = (key < treeLen/2)? key: treeLen-key-1;
+	// 	var i;
+
+	// 	for (i = 1; i <= shorterGap; i++) {
+	// 		closestLeft = tree[key - i];
+	// 		closestRight = tree[key + i];
+	// 		if (closestLeft || closestRight) {
+	// 			break;
+	// 		}
+	// 	}
+	// }
+
+	function insert(key, height) {
+		tree[key] = {
+			height: height,
+			leftChildKey: undefined,
+			rightChildKey: undefined
+		};
+	}
+
 	return {
-		"init": init, // for test
 		"solve": solve,
 		"getInput": getInput,
-		"print": output
+		"print": output,
+		// for test
+		"reset": reset,
+		"tree": tree,
+		"insert": insert
 	};
 })();
