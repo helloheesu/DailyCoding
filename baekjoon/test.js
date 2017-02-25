@@ -83,4 +83,12 @@ describe('2957번: 이진 탐색 트리', function() {
 		// then
 		expect(Solution.tree[2]).to.be.eql({height:0, leftChildKey:undefined, rightChildKey:undefined});
 	});
+
+	it("루트 + 자식 1개 삽입", function() {
+		// when
+		Solution.insert(2, 0);
+		Solution.insert(5, 1, 2);
+		// then
+		expect(Solution.tree[2]).to.be.eql({height:0, leftChildKey:undefined, rightChildKey:5});
+	});
 });

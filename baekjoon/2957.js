@@ -6,7 +6,7 @@ var Solution = (function() {
 	var result = 0;
 
 	function reset() {
-		tree = null;
+		tree = [];
 		result = 0;
 	}
 
@@ -46,7 +46,11 @@ var Solution = (function() {
 	// 	}
 	// }
 
-	function insert(key, height) {
+	function insert(key, height, parent) {
+		if (parent) {
+			tree[parent].rightChildKey = key;
+		}
+
 		tree[key] = {
 			height: height,
 			leftChildKey: undefined,
