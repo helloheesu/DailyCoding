@@ -4,24 +4,29 @@
 describe('2957번: 이진 탐색 트리', function() {
 	var inputs;
 	var outputs;
+	var solution;
 
 	beforeEach(function() {
 		inputs = [];
 		outputs = [];
+		solution = new Solution();
 
-		sinon.stub(Solution, "getInput", function() {
+		sinon.stub(solution, "getInput", function() {
 			var input = inputs.shift();
 			return input;
 		});
-		sinon.stub(Solution, "print", function(value) {
+		sinon.stub(solution, "print", function(value) {
 			outputs.push(value);
 		});
 	});
 
 	afterEach(function() {
-		Solution.reset();
-		Solution.getInput.restore();
-		Solution.print.restore();
+		solution.getInput.restore();
+		solution.print.restore();
+
+		inputs = null;
+		outputs = null;
+		solution = null;
 	});
 
 	// it('루트 1개만 입력', function() {
@@ -77,18 +82,43 @@ describe('2957번: 이진 탐색 트리', function() {
 	// 	expect(outputs.shift()).to.be.eql(3);
 	// });
 
-	it("루트 1개 삽입", function() {
-		// when
-		Solution.insert(2, 0);
-		// then
-		expect(Solution.tree[2]).to.be.eql({height:0, leftChildKey:undefined, rightChildKey:undefined});
-	});
+	describe("삽입", function() {
+		it("루트 1개 삽입", function() {
+			// when
+			solution.insert(2, 0);
+			// then
+			expect(solution.tree[2]).to.be.eql({height:0, leftChildKey:undefined, rightChildKey:undefined});
+		});
 
-	it("루트 + 자식 1개 삽입", function() {
-		// when
-		Solution.insert(2, 0);
-		Solution.insert(5, 1, 2);
-		// then
-		expect(Solution.tree[2]).to.be.eql({height:0, leftChildKey:undefined, rightChildKey:5});
+		it("루트 + 오른쪽 자식 1개 삽입", function() {
+			// when
+			var parentKey = 2;
+			var key = 5;
+			solution.insert(parentKey);
+			solution.insert(key, parentKey);
+			// then
+			expect(solution.tree[parentKey]).to.be.eql({height:0, leftChildKey:undefined, rightChildKey:key});
+		});
+
+		it("루트 + 왼쪽 자식 1개 삽입", function() {
+			// when
+			var parentKey = 2;
+			var key = 1;
+			solution.insert(parentKey);
+			solution.insert(key, parentKey);
+			// then
+			expect(solution.tree[parentKey]).to.be.eql({height:0, leftChildKey:key, rightChildKey:undefined});
+		});
+
+		it("루트 + 오른쪽 자식 3개 삽입", function() {
+			// when
+			solution.insert(2);
+			solution.insert(5, 2);
+			solution.insert(7, 5);
+			// then
+			expect(solution.tree[2]).to.be.eql({height:0, leftChildKey:undefined, rightChildKey:5});
+			expect(solution.tree[5]).to.be.eql({height:1, leftChildKey:undefined, rightChildKey:7});
+			expect(solution.tree[7]).to.be.eql({height:2, leftChildKey:undefined, rightChildKey:undefined});
+		});
 	});
 });

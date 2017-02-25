@@ -1,35 +1,47 @@
 // a[key] = {hasLeft:false, hasRight:false}
 
-var Solution = (function() {
-	var tree = [];
-	var treeLen;
-	var result = 0;
+function Solution() {
+	this.tree = [];
+	this.treeLen;
+	this.result = 0;
+}
 
-	function reset() {
-		tree = [];
-		result = 0;
+Solution.prototype.getInput = function() {
+	return parseInt(readline());
+};
+
+Solution.prototype.print = function(value) {
+	print(value);
+};
+
+Solution.prototype.insert = function(key, parentKey) {
+	var height = 0;
+
+	if (parentKey) {
+		var parentNode = this.tree[parentKey];
+		parentNode[(key>parentKey)?'rightChildKey':'leftChildKey'] = key;
+		height = parentNode.height + 1;
 	}
 
-	function getInput() {
-		return parseInt(readline());
-	}
+	this.tree[key] = {
+		height: height,
+		leftChildKey: undefined,
+		rightChildKey: undefined
+	};
+};
 
-	function output(value) {
-		print(value);
-	}
+Solution.prototype.solve = function() {
+	this.treeLen = this.getInput();
+	this.tree = new Array(treeLen);
+	var currentKey;
 
-	function solve() {
-		treeLen = this.getInput();
-		tree = new Array(treeLen);
-		var currentKey;
-
-		for (var currentNodeNum = 0; currentNodeNum < treeLen; currentNodeNum++) {
-			currentKey = this.getInput();
-			result += getParentHeight(currentKey);
-			insert(currentKey);
-			this.print(result++);
-		}
+	for (var currentNodeNum = 0; currentNodeNum < treeLen; currentNodeNum++) {
+		currentKey = this.getInput();
+		this.result += getParentHeight(currentKey);
+		this.insert(currentKey);
+		this.print(result++);
 	}
+};
 
 	// function getParentHeight(key) {
 	// 	var closestLeft;
@@ -45,26 +57,3 @@ var Solution = (function() {
 	// 		}
 	// 	}
 	// }
-
-	function insert(key, height, parent) {
-		if (parent) {
-			tree[parent].rightChildKey = key;
-		}
-
-		tree[key] = {
-			height: height,
-			leftChildKey: undefined,
-			rightChildKey: undefined
-		};
-	}
-
-	return {
-		"solve": solve,
-		"getInput": getInput,
-		"print": output,
-		// for test
-		"reset": reset,
-		"tree": tree,
-		"insert": insert
-	};
-})();
