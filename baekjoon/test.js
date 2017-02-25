@@ -1,4 +1,4 @@
-describe('Hello,', function() {
+describe('2957번: 이진 탐색 트리', function() {
 	var inputs;
 	var outputs;
 	var getInput;
@@ -6,10 +6,12 @@ describe('Hello,', function() {
 
 	beforeEach(function() {
 		getInput = sinon.stub(Solution, "getInput", function() {
-			return inputs.pop();
+			var input = inputs.shift();
+			return input;
 		});
 		print = sinon.stub(Solution, "print", function(value) {
-			expect(value).to.be.eql(outputs.pop());
+			var output = outputs.shift();
+			expect(value).to.be.eql(output);
 		});
 	});
 
@@ -21,10 +23,21 @@ describe('Hello,', function() {
 		Solution.print.restore();
 	});
 
-	it('World!', function() {
+	it('노드가 1개만 들어가면 출력은 0이어야 한다.', function() {
 		// given
-		inputs = [8, 3];
+		inputs = [1, 3];
 		outputs = [0];
+
+
+		// when
+
+		// then
+		Solution.solve();
+	});
+	it('노드가 2개만 들어가면 출력은 01이어야 한다.', function() {
+		// given
+		inputs = [2, 3, 5];
+		outputs = [0, 1];
 
 
 		// when

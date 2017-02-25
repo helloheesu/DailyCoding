@@ -26,9 +26,11 @@ var Solution = (function() {
 		currentNodeNum++;
 		this.print(insertCallCount);
 
-		// for (; currentNodeNum <= maxNodeNum; currentNodeNum++) {
-		// 	currentKey = getInput() - 1;
-		// }
+		for (; currentNodeNum < maxNodeNum; currentNodeNum++) {
+			insertCallCount += 1;
+			this.print(insertCallCount);
+			// currentKey = getInput() - 1;
+		}
 	}
 
 	// function getClosestKeys(key) {
