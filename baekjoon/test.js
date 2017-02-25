@@ -2,30 +2,13 @@
 // outputs = [0, 1, 2, 4, 7, 11, 13, 15]
 
 describe('2957번: 이진 탐색 트리', function() {
-	var inputs;
-	var outputs;
 	var solution;
 
 	beforeEach(function() {
-		inputs = [];
-		outputs = [];
 		solution = new Solution();
-
-		sinon.stub(solution, "getInput", function() {
-			var input = inputs.shift();
-			return input;
-		});
-		sinon.stub(solution, "print", function(value) {
-			outputs.push(value);
-		});
 	});
 
 	afterEach(function() {
-		solution.getInput.restore();
-		solution.print.restore();
-
-		inputs = null;
-		outputs = null;
 		solution = null;
 	});
 
@@ -123,7 +106,31 @@ describe('2957번: 이진 탐색 트리', function() {
 		});
 	});
 
-	describe("init", function() {
+	describe("입력", function() {
+		var inputs;
+		var outputs;
+
+		beforeEach(function() {
+			inputs = [];
+			outputs = [];
+
+			sinon.stub(solution, "getInput", function() {
+				var input = inputs.shift();
+				return input;
+			});
+			sinon.stub(solution, "print", function(value) {
+				outputs.push(value);
+			});
+		});
+
+		afterEach(function() {
+			solution.getInput.restore();
+			solution.print.restore();
+
+			inputs = null;
+			outputs = null;
+		});
+
 		it("트리 길이 제대로 받기", function() {
 			// given
 			inputs = [3, 5, 1];
