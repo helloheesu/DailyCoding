@@ -1,7 +1,10 @@
+// inputs = [N, 3, 5, 1, 6, 8, 7, 2, 4]
+// outputs = [0, 1, 2, 4, 7, 11, 13, 15]
+
 describe('2957번: 이진 탐색 트리', function() {
 	var inputs;
-	var outputs;
-	var getInput;
+	var outputs = [];
+	var getInput = [];
 	var print;
 
 	beforeEach(function() {
@@ -10,8 +13,7 @@ describe('2957번: 이진 탐색 트리', function() {
 			return input;
 		});
 		print = sinon.stub(Solution, "print", function(value) {
-			var output = outputs.shift();
-			expect(value).to.be.eql(output);
+			outputs.push(value);
 		});
 	});
 
@@ -23,26 +25,39 @@ describe('2957번: 이진 탐색 트리', function() {
 		Solution.print.restore();
 	});
 
-	it('노드가 1개만 들어가면 출력은 0이어야 한다.', function() {
+	it('루트 1개만 입력', function() {
 		// given
 		inputs = [1, 3];
-		outputs = [0];
-
 
 		// when
+		Solution.solve();
 
 		// then
-		Solution.solve();
+		expect(outputs.shift()).to.be.eql(0);
 	});
-	it('노드가 2개만 들어가면 출력은 01이어야 한다.', function() {
+
+	it('왼쪽 자식 하나 추가', function() {
 		// given
 		inputs = [2, 3, 5];
-		outputs = [0, 1];
-
 
 		// when
+		Solution.solve();
 
 		// then
+		expect(outputs.shift()).to.be.eql(0);
+		expect(outputs.shift()).to.be.eql(1);
+	});
+
+	it('깊이가 1인 자식 하나씩 추가', function() {
+		// given
+		inputs = [3, 3, 5, 1];
+
+		// when
 		Solution.solve();
+
+		// then
+		expect(outputs.shift()).to.be.eql(0);
+		expect(outputs.shift()).to.be.eql(1);
+		expect(outputs.shift()).to.be.eql(2);
 	});
 });
