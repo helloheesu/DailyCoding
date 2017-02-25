@@ -1,51 +1,64 @@
-// a[key] = {hasLeft:false, hasRight:false}
+// function getInput() {
+// 	return parseInt(readline());
+// }
 
-function Solution() {
-	this.tree = [];
-	this.treeLen;
-	this.result = 0;
-}
+// function print(value) {
+// 	print(value);
+// }
 
-Solution.prototype.getInput = function() {
-	return parseInt(readline());
-};
 
-Solution.prototype.print = function(value) {
-	print(value);
-};
+function generateSolution(IO) {
+	var tree = [];
+	var treeLen;
+	var result = 0;
 
-Solution.prototype.insert = function(key, parentKey) {
-	var height = 0;
 
-	if (parentKey) {
-		var parentNode = this.tree[parentKey];
-		parentNode[(key>parentKey)?'rightChildKey':'leftChildKey'] = key;
-		height = parentNode.height + 1;
+	function solve() {
+		initTree();
+		var currentKey;
 	}
 
-	this.tree[key] = {
-		height: height,
-		leftChildKey: undefined,
-		rightChildKey: undefined
+	function insert(key, parentKey) {
+		var height = 0;
+
+		if (parentKey) {
+			var parentNode = tree[parentKey];
+			parentNode[(key>parentKey)?'rightChildKey':'leftChildKey'] = key;
+			height = parentNode.height + 1;
+		}
+
+		tree[key] = {
+			height: height,
+			leftChildKey: undefined,
+			rightChildKey: undefined
+		};
+	}
+
+	function initTree() {
+		treeLen = IO.getInput();
+		tree = new Array(treeLen);
+	}
+
+
+	function reset() {
+		tree.splice(0, tree.length);
+		treeLen = 0;
+		result = 0;
+	}
+
+	return {
+		"solve":solve,
+		// for test
+		"insert":insert,
+		"reset":reset,
+		get tree() {
+			return tree;
+		},
+		get treeLen() {
+			return treeLen;
+		}
 	};
-};
-
-Solution.prototype.initTree = function() {
-	this.treeLen = this.getInput();
-	this.tree = new Array(this.treeLen);
-};
-
-Solution.prototype.solve = function() {
-	this.initTree();
-	var currentKey;
-
-	// for (var currentNodeNum = 0; currentNodeNum < treeLen; currentNodeNum++) {
-	// 	currentKey = this.getInput();
-	// 	this.result += getParentHeight(currentKey);
-	// 	this.insert(currentKey);
-	// 	this.print(result++);
-	// }
-};
+}
 
 	// function getParentHeight(key) {
 	// 	var closestLeft;
@@ -61,3 +74,5 @@ Solution.prototype.solve = function() {
 	// 		}
 	// 	}
 	// }
+
+

@@ -2,15 +2,6 @@
 // outputs = [0, 1, 2, 4, 7, 11, 13, 15]
 
 describe('2957번: 이진 탐색 트리', function() {
-	var solution;
-
-	beforeEach(function() {
-		solution = new Solution();
-	});
-
-	afterEach(function() {
-		solution = null;
-	});
 
 	// it('루트 1개만 입력', function() {
 	// 	// given
@@ -67,6 +58,16 @@ describe('2957번: 이진 탐색 트리', function() {
 	// });
 
 	describe("삽입", function() {
+		var solution;
+
+		beforeEach(function() {
+			solution = generateSolution();
+		});
+
+		afterEach(function() {
+			solution = null;
+		});
+
 		it("루트 1개 삽입", function() {
 			// when
 			solution.insert(2, 0);
@@ -110,25 +111,26 @@ describe('2957번: 이진 탐색 트리', function() {
 		var inputs;
 		var outputs;
 
+		var solution;
+
 		beforeEach(function() {
 			inputs = [];
 			outputs = [];
 
-			sinon.stub(solution, "getInput", function() {
-				var input = inputs.shift();
-				return input;
-			});
-			sinon.stub(solution, "print", function(value) {
-				outputs.push(value);
+			solution = generateSolution({
+				getInput: function() {
+					var input = inputs.shift();
+					return input;
+				}, print: function(value) {
+					outputs.push(value);
+				}
 			});
 		});
 
 		afterEach(function() {
-			solution.getInput.restore();
-			solution.print.restore();
-
 			inputs = null;
 			outputs = null;
+			solution = null;
 		});
 
 		it("트리 길이 제대로 받기", function() {
@@ -142,6 +144,7 @@ describe('2957번: 이진 탐색 트리', function() {
 			// then
 			expect(solution.treeLen).to.be.eql(3);
 			expect(solution.tree).to.be.an('array');
+			expect(solution.tree.length).to.be.eql(3);
 		});
 	});
 });
