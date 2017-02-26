@@ -69,21 +69,6 @@ describe("2957번: 이진 탐색 트리", function() {
 		});
 	});
 
-	it("트리 길이 제대로 받기", function() {
-		// given
-		inputs = [2, 3, 1];
-		inputs.unshift(inputs.length);
-		var inputLength = inputs.length;
-
-		// when
-		solution.solve();
-
-		// then
-		expect(solution.treeLen).to.be.eql(inputLength);
-		expect(solution.tree).to.be.an("array");
-		expect(solution.tree.length).to.be.eql(inputLength);
-	});
-
 	describe("이웃 키 구하기", function() {
 		beforeEach(function() {
 			inputs = [8, 3, 5, 1, 6, 8, 7, 2, 4];
@@ -123,6 +108,42 @@ describe("2957번: 이진 탐색 트리", function() {
 
 			// then
 			expect(solution.getNeighborKeys(5)).to.be.eql({left:1, right:6});
+		});
+	});
+
+	describe("예시 문제 풀이", function() {
+		it("트리 길이 제대로 받기", function() {
+			// given
+			inputs = [2, 3, 1];
+			inputs.unshift(inputs.length);
+			var inputLength = inputs.length;
+
+			// when
+			solution.solve();
+
+			// then
+			expect(solution.treeLen).to.be.eql(inputLength);
+			expect(solution.tree).to.be.an("array");
+			expect(solution.tree.length).to.be.eql(inputLength);
+		});
+
+		it("높이 구하기", function() {
+			// given
+			inputs = [3, 5, 1, 6, 8, 7, 2, 4];
+			inputs.unshift(inputs.length);
+
+			// when
+			solution.solve();
+
+			// then
+			expect(solution.tree[3].height).to.be.eql(0);
+			expect(solution.tree[5].height).to.be.eql(1);
+			expect(solution.tree[1].height).to.be.eql(1);
+			expect(solution.tree[6].height).to.be.eql(2);
+			expect(solution.tree[8].height).to.be.eql(3);
+			expect(solution.tree[7].height).to.be.eql(4);
+			expect(solution.tree[2].height).to.be.eql(2);
+			expect(solution.tree[4].height).to.be.eql(2);
 		});
 	});
 });

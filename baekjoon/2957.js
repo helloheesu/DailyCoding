@@ -1,12 +1,3 @@
-// function getInput() {
-// 	return parseInt(readline());
-// }
-
-// function print(value) {
-// 	print(value);
-// }
-
-
 function generateSolution(IO) {
 	var tree = [];
 	var treeLen;
@@ -14,10 +5,12 @@ function generateSolution(IO) {
 	function solve() {
 		initTree();
 		var currentKey;
+		var neighborKeys;
 
-		for (var currentNodeNum = 0; currentNodeNum < treeLen; currentNodeNum++) {
+		for (var currentNodeNum = 1; currentNodeNum < treeLen; currentNodeNum++) {
 			currentKey = IO.getInput();
-			insert(currentKey);
+			neighborKeys = getNeighborKeys(currentKey);
+			insert(currentKey, neighborKeys);
 		}
 	}
 
@@ -54,14 +47,19 @@ function generateSolution(IO) {
 	function insert(key, neighborKeys) {
 		var height;
 
-		if (!neighborKeys) {
+		if (!neighborKeys || (!neighborKeys.left && !neighborKeys.right)) {
 			height = 0;
 		} else {
 			var leftKey = neighborKeys.left;
 			var rightKey = neighborKeys.right;
 
-			height = (leftKey && !tree[leftKey].right && tree[leftKey].height+1) ||
-			(rightKey && !tree[rightKey].left && tree[rightKey].height+1);
+			var parentKey;
+			if (leftKey && rightKey) {
+				parentKey = (tree[leftKey].height > tree[rightKey].height)? leftKey: rightKey;
+			} else {
+				parentKey = (leftKey)? leftKey: rightKey;
+			}
+			height = tree[parentKey].height + 1;
 
 			if (leftKey) {
 				tree[leftKey].right = key;
@@ -99,19 +97,12 @@ function generateSolution(IO) {
 	};
 }
 
-	// function getParentHeight(key) {
-	// 	var closestLeft;
-	// 	var closestRight;
-	// 	var shorterGap = (key < treeLen/2)? key: treeLen-key-1;
-	// 	var i;
-
-	// 	for (i = 1; i <= shorterGap; i++) {
-	// 		closestLeft = tree[key - i];
-	// 		closestRight = tree[key + i];
-	// 		if (closestLeft || closestRight) {
-	// 			break;
-	// 		}
-	// 	}
-	// }
-
-
+/*
+generateSolution({
+	getInput: function() {
+		return parseInt(readline());
+	}, print: function(value) {
+		print(value);
+	}
+}).solve();
+*/
