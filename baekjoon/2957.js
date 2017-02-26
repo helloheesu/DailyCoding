@@ -47,32 +47,30 @@ function generateSolution(IO) {
 	}
 
 	function insert(key, neighborKeys) {
-		if (!neighborKeys) {
-			tree[key] = {
-				"height": 0
-			};
-
-			return;
-		}
-
-		var leftKey = neighborKeys.left;
-		var rightKey = neighborKeys.right;
 		var height;
 
-		height = (leftKey && !tree[leftKey].right && tree[leftKey].height+1) ||
-		(rightKey && !tree[rightKey].left && tree[rightKey].height+1);
+		if (!neighborKeys) {
+			height = 0;
+		} else {
+			var leftKey = neighborKeys.left;
+			var rightKey = neighborKeys.right;
+
+			height = (leftKey && !tree[leftKey].right && tree[leftKey].height+1) ||
+			(rightKey && !tree[rightKey].left && tree[rightKey].height+1);
+
+			if (leftKey) {
+				tree[leftKey].right = key;
+			}
+			if (rightKey) {
+				tree[rightKey].left = key;
+			}
+		}
+
 		tree[key] = {
 			"height": height,
 			"left": leftKey,
 			"right": rightKey
 		};
-
-		if (leftKey) {
-			tree[leftKey].right = key;
-		}
-		if (rightKey) {
-			tree[rightKey].left = key;
-		}
 	}
 
 	function reset() {
