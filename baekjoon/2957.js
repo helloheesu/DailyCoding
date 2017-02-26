@@ -10,12 +10,30 @@
 function generateSolution(IO) {
 	var tree = [];
 	var treeLen;
-	var result = 0;
-
 
 	function solve() {
 		initTree();
 		var currentKey;
+	}
+
+	function initTree() {
+		treeLen = IO.getInput();
+		tree = new Array(treeLen);
+	}
+
+	function getNeighbors(key) {
+		var leftIndex, rightIndex;
+		var neighbors = {
+			left: undefined,
+			right: undefined
+		};
+
+		for (leftIndex = rightIndex = key;
+			leftIndex >= 1 && rightIndex <= treeLen;
+			leftIndex--, rightIndex++) {
+			tree[leftIndex]
+			tree[rightIndex]
+		}
 	}
 
 	function insert(key, parentKey) {
@@ -34,16 +52,9 @@ function generateSolution(IO) {
 		};
 	}
 
-	function initTree() {
-		treeLen = IO.getInput();
-		tree = new Array(treeLen);
-	}
-
-
 	function reset() {
 		tree.splice(0, tree.length);
 		treeLen = 0;
-		result = 0;
 	}
 
 	return {
