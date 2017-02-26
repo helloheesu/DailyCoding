@@ -14,10 +14,15 @@ function generateSolution(IO) {
 	function solve() {
 		initTree();
 		var currentKey;
+
+		for (var currentNodeNum = 0; currentNodeNum < treeLen; currentNodeNum++) {
+			currentKey = IO.getInput();
+			insert(currentKey);
+		}
 	}
 
 	function initTree() {
-		treeLen = IO.getInput();
+		treeLen = IO.getInput() + 1;
 		tree = new Array(treeLen);
 	}
 
@@ -28,8 +33,8 @@ function generateSolution(IO) {
 			right: undefined
 		};
 
-		for (leftIndex = rightIndex = key;
-			leftIndex >= 1 && rightIndex <= treeLen;
+		for (leftIndex = key - 1, rightIndex = key + 1;
+			leftIndex >= 1 || rightIndex <= treeLen;
 			leftIndex--, rightIndex++) {
 			if (tree[leftIndex]) {
 				neighborKeys.left = leftIndex;
@@ -83,6 +88,7 @@ function generateSolution(IO) {
 		// for test
 		"insert":insert,
 		"reset":reset,
+		"initTree":initTree,
 		"getNeighborKeys":getNeighborKeys,
 		get tree() {
 			return tree;
