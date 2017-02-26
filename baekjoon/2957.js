@@ -1,3 +1,5 @@
+var DEBUG = true;
+
 function generateSolution(IO) {
 	var tree = [];
 	var treeLen;
@@ -7,10 +9,23 @@ function generateSolution(IO) {
 		var currentKey;
 		var neighborKeys;
 
+		var result = 0;
+		if (DEBUG) {
+			console.time("start");
+		}
 		for (var currentNodeNum = 1; currentNodeNum < treeLen; currentNodeNum++) {
 			currentKey = IO.getInput();
+			console.time("key");
 			neighborKeys = getNeighborKeys(currentKey);
+			console.timeEnd("key");
+			console.time("insert");
 			insert(currentKey, neighborKeys);
+			console.timeEnd("insert");
+			result += tree[currentKey].height;
+			IO.print(result);
+		}
+		if (DEBUG) {
+			console.timeEnd("start");
 		}
 	}
 
@@ -97,12 +112,10 @@ function generateSolution(IO) {
 	};
 }
 
-/*
-generateSolution({
-	getInput: function() {
-		return parseInt(readline());
-	}, print: function(value) {
-		print(value);
-	}
-}).solve();
-*/
+// generateSolution({
+// 	getInput: function() {
+// 		return parseInt(readline());
+// 	}, print: function(value) {
+// 		print(value);
+// 	}
+// }).solve();

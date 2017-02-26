@@ -1,2 +1,2 @@
 NUM=$1
-js $NUM.js < $NUM_input.txt
+js $NUM".js" < $NUM"_input.txt"

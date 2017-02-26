@@ -1,6 +1,3 @@
-// inputs = [N, 3, 5, 1, 6, 8, 7, 2, 4]
-// outputs = [0, 1, 2, 4, 7, 11, 13, 15]
-
 describe("2957번: 이진 탐색 트리", function() {
 	var inputs;
 	var outputs;
@@ -144,6 +141,18 @@ describe("2957번: 이진 탐색 트리", function() {
 			expect(solution.tree[7].height).to.be.eql(4);
 			expect(solution.tree[2].height).to.be.eql(2);
 			expect(solution.tree[4].height).to.be.eql(2);
+		});
+
+		it("누산 & 출력", function() {
+			// given
+			inputs = [3, 5, 1, 6, 8, 7, 2, 4];
+			inputs.unshift(inputs.length);
+
+			// when
+			solution.solve();
+
+			// then
+			expect(outputs).to.be.eql([0, 1, 2, 4, 7, 11, 13, 15]);
 		});
 	});
 });
