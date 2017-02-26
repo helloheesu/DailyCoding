@@ -21,9 +21,9 @@ function generateSolution(IO) {
 		tree = new Array(treeLen);
 	}
 
-	function getNeighbors(key) {
+	function getNeighborKeys(key) {
 		var leftIndex, rightIndex;
-		var neighbors = {
+		var neighborKeys = {
 			left: undefined,
 			right: undefined
 		};
@@ -31,25 +31,48 @@ function generateSolution(IO) {
 		for (leftIndex = rightIndex = key;
 			leftIndex >= 1 && rightIndex <= treeLen;
 			leftIndex--, rightIndex++) {
-			tree[leftIndex]
-			tree[rightIndex]
+			if (tree[leftIndex]) {
+				neighborKeys.left = leftIndex;
+				neighborKeys.right = tree[leftIndex].right;
+				break;
+			}
+			if (tree[rightIndex]) {
+				neighborKeys.right = rightIndex;
+				neighborKeys.left = tree[rightIndex].left;
+				break;
+			}
 		}
+
+		return neighborKeys;
 	}
 
-	function insert(key, parentKey) {
-		var height = 0;
+	function insert(key, neighborKeys) {
+		if (!neighborKeys) {
+			tree[key] = {
+				"height": 0
+			};
 
-		if (parentKey) {
-			var parentNode = tree[parentKey];
-			parentNode[(key>parentKey)?'rightChildKey':'leftChildKey'] = key;
-			height = parentNode.height + 1;
+			return;
 		}
 
+		var leftKey = neighborKeys.left;
+		var rightKey = neighborKeys.right;
+		var height;
+
+		height = (leftKey && !tree[leftKey].right && tree[leftKey].height+1) ||
+		(rightKey && !tree[rightKey].left && tree[rightKey].height+1);
 		tree[key] = {
-			height: height,
-			leftChildKey: undefined,
-			rightChildKey: undefined
+			"height": height,
+			"left": leftKey,
+			"right": rightKey
 		};
+
+		if (leftKey) {
+			tree[leftKey].right = key;
+		}
+		if (rightKey) {
+			tree[rightKey].left = key;
+		}
 	}
 
 	function reset() {
@@ -62,6 +85,7 @@ function generateSolution(IO) {
 		// for test
 		"insert":insert,
 		"reset":reset,
+		"getNeighborKeys":getNeighborKeys,
 		get tree() {
 			return tree;
 		},

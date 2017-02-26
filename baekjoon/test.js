@@ -70,44 +70,46 @@ describe('2957번: 이진 탐색 트리', function() {
 
 		it("루트 1개 삽입", function() {
 			// when
-			solution.insert(2, 0);
+			solution.insert(2);
+
 			// then
-			expect(solution.tree[2]).to.be.eql({height:0, leftChildKey:undefined, rightChildKey:undefined});
+			expect(solution.tree[2].height).to.be.eql(0);
 		});
 
 		it("루트 + 오른쪽 자식 1개 삽입", function() {
 			// when
-			var parentKey = 2;
-			var key = 5;
-			solution.insert(parentKey);
-			solution.insert(key, parentKey);
+			solution.insert(2);
+			solution.insert(5, {left:2});
+
 			// then
-			expect(solution.tree[parentKey]).to.be.eql({height:0, leftChildKey:undefined, rightChildKey:key});
+			expect(solution.tree[2]).to.be.eql({height:0, right:5});
+			expect(solution.tree[5]).to.be.eql({height:1, left:2, right:undefined});
 		});
 
 		it("루트 + 왼쪽 자식 1개 삽입", function() {
 			// when
-			var parentKey = 2;
-			var key = 1;
-			solution.insert(parentKey);
-			solution.insert(key, parentKey);
+			solution.insert(2);
+			solution.insert(1, {right:2});
+
 			// then
-			expect(solution.tree[parentKey]).to.be.eql({height:0, leftChildKey:key, rightChildKey:undefined});
+			expect(solution.tree[2]).to.be.eql({height:0, left:1});
+			expect(solution.tree[1]).to.be.eql({height:1, left:undefined, right:2});
 		});
 
 		it("루트 + 오른쪽 자식 3개 삽입", function() {
 			// when
 			solution.insert(2);
-			solution.insert(5, 2);
-			solution.insert(7, 5);
+			solution.insert(5, {left:2});
+			solution.insert(7, {left:5});
+
 			// then
-			expect(solution.tree[2]).to.be.eql({height:0, leftChildKey:undefined, rightChildKey:5});
-			expect(solution.tree[5]).to.be.eql({height:1, leftChildKey:undefined, rightChildKey:7});
-			expect(solution.tree[7]).to.be.eql({height:2, leftChildKey:undefined, rightChildKey:undefined});
+			expect(solution.tree[2]).to.be.eql({height:0, right:5});
+			expect(solution.tree[5]).to.be.eql({height:1, left:2, right:7});
+			expect(solution.tree[7]).to.be.eql({height:2, left:5, right:undefined});
 		});
 	});
 
-	describe("입력", function() {
+	describe("helpers: 입력, 이웃", function() {
 		var inputs;
 		var outputs;
 
