@@ -4,8 +4,8 @@ function searchNaive(haystack, needle) {
 	}
 
 	var result = [];
-	for (var start = 0, haystacklen = haystack.length - needle.length; start <= haystacklen; start++) {
-		for (var matchedNum = 0, needlelen = needle.length; matchedNum < needlelen; matchedNum++) {
+	for (var start = 0, haystackLen = haystack.length - needle.length; start <= haystackLen; start++) {
+		for (var matchedNum = 0, needleLen = needle.length; matchedNum < needleLen; matchedNum++) {
 			if (haystack[start+matchedNum] !== needle[matchedNum]) {
 				matchedNum = -1;
 				break;
