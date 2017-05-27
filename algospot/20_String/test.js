@@ -1,5 +1,5 @@
 describe("string match > ", function() {
-	var testSearchFunction = naiveSearch;
+	var testSearchFunction = searchNaive;
 
 	describe("가능한 시작 위치 다 반환하기", function() {
 		it("Blue Whale에서 Blue 찾으면 [0]", function() {
