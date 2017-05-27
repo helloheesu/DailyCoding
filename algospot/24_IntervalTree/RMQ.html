@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>RMQ</title>
+</head>
+<body>
+<script type="text/javascript" src="./RMQ.js"></script>
+<script type="text/javascript">
+	let testSuite = [
+		{
+			heights: [1,2,3],
+			candidates: [
+				{start: 0, end: 2}
+			]
+		},
+		{
+			heights: [3, 9, 5, 6, 10, 8, 7, 1, 2, 4],
+			candidates: [
+				{start: 1, end: 6},
+				{start: 4, end: 7},
+				{start: 9, end: 9},
+				{start: 5, end: 8}
+			]
+		}
+	];
+
+	for (let i = 0; i < testSuite.length; i++) {
+		let currentTest = testSuite[i];
+		let rmq = new RMQ(currentTest.heights);
+		let rhq = new RMQ(currentTest.heights.map((height) => (-1 * height)));
+		let candidates = currentTest.candidates;
+
+		for (let j = 0; j < candidates.length; j++) {
+			let currentCandidate = candidates[j];
+			let m = rmq.query(currentCandidate.start, currentCandidate.end);
+			let h = -1 * rhq.query(currentCandidate.start, currentCandidate.end);
+
+			console.info(h - m, currentCandidate.start, currentCandidate.end);
+		}
+	}
+</script>
+</body>
+</html>
