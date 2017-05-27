@@ -1,4 +1,4 @@
-describe("KMP > ", function() {
+describe("string match > ", function() {
 	var testSearchFunction = naiveSearch;
 
 	describe("가능한 시작 위치 다 반환하기", function() {
@@ -20,6 +20,15 @@ describe("KMP > ", function() {
 			// then
 			expect(result).to.be.eql([5]);
 		});
+		it("Blue Whale에서 l 찾으면 [1, 8]", function() {
+			// given
+			var haystack = "Blue Whale";
+			var needle = "l";
+			// when
+			var result = testSearchFunction(haystack, needle);
+			// then
+			expect(result).to.be.eql([1, 8]);
+		});
 		it("Blue Whale Blue에서 Blue 찾으면 [0, 11]", function() {
 			// given
 			var haystack = "Blue Whale Blue";
@@ -31,7 +40,16 @@ describe("KMP > ", function() {
 		});
 	});
 
-	describe.skip("없는 문자열 찾으면 빈 배열([]) 반환", function() {
+	describe("없는 문자열 찾으면 빈 배열([]) 반환", function() {
+		it("빈 문자열을 찾으면 안 됨", function() {
+			// given
+			var haystack = "abcd";
+			var needle = "";
+			// when
+			var result = testSearchFunction(haystack, needle);
+			// then
+			expect(result).to.be.eql([]);
+		});
 		it("빈 문자열에서 찾아도 없는 것", function() {
 			// given
 			var haystack = "";
@@ -41,16 +59,7 @@ describe("KMP > ", function() {
 			// then
 			expect(result).to.be.eql([]);
 		});
-		it("빈 문자열을 찾아도 없는 것", function() {
-			// given
-			var haystack = "";
-			var needle = "abcd";
-			// when
-			var result = testSearchFunction(haystack, needle);
-			// then
-			expect(result).to.be.eql([]);
-		});
-		it("특정 문자열에서 없는 특정 문자열 찾기", function(argument) {
+		it("특정 문자열에서 없는 특정 문자열 찾기", function() {
 			// given
 			var haystack = "Blue Whale";
 			var needle = "Blute";
@@ -61,3 +70,5 @@ describe("KMP > ", function() {
 		});
 	});
 });
+
+describe("partial match > ");
