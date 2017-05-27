@@ -35,3 +35,24 @@ function partialSearchNaive(needle) {
 
 	return partialMap;
 }
+
+function searchKMP(haystack, needle, partialMap) {
+	if (!needle.length) {
+		return [];
+	}
+
+	var result = [];
+	for (var start = 0, haystackLen = haystack.length - needle.length; start <= haystackLen; start++) {
+		for (var matchedNum = 0, needleLen = needle.length; matchedNum < needleLen; matchedNum++) {
+			if (haystack[start+matchedNum] !== needle[matchedNum]) {
+				matchedNum = -1;
+				break;
+			}
+		}
+
+		if (matchedNum != -1) {
+			result.push(start);
+		}
+	}
+	return result;
+}
