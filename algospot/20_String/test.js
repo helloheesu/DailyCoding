@@ -1,7 +1,17 @@
 describe("string match > ", function() {
-	var testSearchFunction = searchNaive;
+	var testSearchFunction = searchKMP;
 
-	describe("가능한 시작 위치 다 반환하기", function() {
+	it("빈 문자열을 찾으면 안 됨", function() {
+		// given
+		var haystack = "abcd";
+		var needle = "";
+		// when
+		var result = testSearchFunction(haystack, needle);
+		// then
+		expect(result).to.be.eql([]);
+	});
+
+	describe.skip("가능한 시작 위치 다 반환하기", function() {
 		it("Blue Whale에서 Blue 찾으면 [0]", function() {
 			// given
 			var haystack = "Blue Whale";
@@ -40,16 +50,7 @@ describe("string match > ", function() {
 		});
 	});
 
-	describe("없는 문자열 찾으면 빈 배열([]) 반환", function() {
-		it("빈 문자열을 찾으면 안 됨", function() {
-			// given
-			var haystack = "abcd";
-			var needle = "";
-			// when
-			var result = testSearchFunction(haystack, needle);
-			// then
-			expect(result).to.be.eql([]);
-		});
+	describe.skip("없는 문자열 찾으면 빈 배열([]) 반환", function() {
 		it("빈 문자열에서 찾아도 없는 것", function() {
 			// given
 			var haystack = "";
