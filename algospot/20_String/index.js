@@ -21,6 +21,6 @@ function naiveSearch(haystack, needle) {
 	return result;
 }
 
-function getPartialMatchNaive(needle, len) {
+function partialSearchNaive(needle, len) {
 	//
 }
