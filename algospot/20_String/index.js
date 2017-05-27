@@ -20,22 +20,18 @@ function searchNaive(haystack, needle) {
 }
 
 function partialSearchNaive(needle) {
-	var pi = new Array(needle.length);
+	var partialMap = new Array(needle.length);
+	partialMap.fill(0);
 
-	for (var start = 0, len = needle.length; start < len; start++) {
-		var matched = true;
-
-		for (var until = 0; until < len; until++) {
-			if (needle[start+until] !== needle[until]) {
-				matched = false;
+	for (var start = 1, len = needle.length; start < len; start++) {
+		for (var matchedNum = 0; matchedNum < len; matchedNum++) {
+			if (needle[start+matchedNum] !== needle[matchedNum]) {
 				break;
 			} else {
-				// pi[i] = Math.max(pi[i], until)
+				partialMap[start+matchedNum] = Math.max(partialMap[start+matchedNum], matchedNum+1);
 			}
 		}
-
-		if (matched) {
-			result.push(start);
-		}
 	}
+
+	return partialMap;
 }

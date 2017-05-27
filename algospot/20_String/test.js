@@ -71,4 +71,15 @@ describe("string match > ", function() {
 	});
 });
 
-describe("partial match > ");
+describe("partial match > ", function() {
+	var testSearchFunction = partialSearchNaive;
+
+	it("aabaabac", function() {
+		// given
+		var needle = "aabaabac";
+		// when
+		var result = testSearchFunction(needle);
+		// then
+		expect(result).to.be.eql([0, 1, 0, 1, 2, 3, 4, 0]);
+	});
+});
