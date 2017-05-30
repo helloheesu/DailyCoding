@@ -1,5 +1,6 @@
-// [PASS] 농구 경기
-// 선발할 수 없는 경우 빼먹지 말기
+/* [PASS] 농구 경기
+ * 선발할 수 없는 경우 빼먹지 말기
+ */
 
 var readCount;
 var countMap = {};

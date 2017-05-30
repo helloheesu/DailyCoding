@@ -4,7 +4,7 @@
    - mySolution: 주어진 숫자보다 작거나 같은 최대 5의 거듭제곱 구하기
    - better : 5나누며 구하기
  * min/max 이런 사소한거 틀리지 말자
-**/
+ */
 
 function countPow(number, base) {
     var count = 0;
