@@ -1,4 +1,5 @@
-// 농구 경기
+// [PASS] 농구 경기
+// 선발할 수 없는 경우 빼먹지 말기
 
 var readCount;
 var countMap = {};
@@ -25,6 +26,6 @@ var rl = require('readline').createInterface({
 				return countMap[key] >= 5;
 			});
 
-		console.log(result.join(''));
+		console.log((result.length)? result.join(''): "PREDAJA");
 	}
 });
