@@ -7,7 +7,7 @@ var testSearchFunction = function(haystack, needle) {
 
 
 describe("partial match > ", function() {
-	it.only("aabaabac", function() {
+	it("aabaabac", function() {
 		// given
 		var needle = "aabaabac";
 		// when
@@ -18,6 +18,8 @@ describe("partial match > ", function() {
 });
 
 describe("string match > ", function() {
+	var testSearchFunction = searchKMP;
+
 	it("빈 문자열을 찾으면 안 됨", function() {
 		// given
 		var haystack = "abcd";
