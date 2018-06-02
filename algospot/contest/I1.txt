@@ -1,0 +1,15 @@
+4
+108 g chocolate
+101 g butter
+108 ml milk
+10 g sugar
+8
+Put butter into the mixing bowl.
+Add sugar.
+Put milk into the mixing bowl.
+Put chocolate into the mixing bowl.
+Put butter into the mixing bowl.
+Take milk from refrigerator.
+Put milk into the mixing bowl.
+Pour contents of the mixing bowl into the baking dish.
+Hello

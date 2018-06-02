@@ -1,0 +1,14 @@
+4
+65 g carrot
+66 g potato
+67 g onion
+3 g sugar
+7
+Take sugar from refrigerator.
+Put onion into the mixing bowl.
+Put potato into the mixing bowl.
+Put sugar into the mixing bowl.
+Add carrot.
+Remove sugar.
+Pour contents of the mixing bowl into the baking dish.
+ABC

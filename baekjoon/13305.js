@@ -4,30 +4,26 @@
 	console.log(result);
 })();
 
-// function splitAndConvert(stringOfNumbers) {
-// 	return stringOfNumbers.split(' ').map(function(num) {
-// 		return parseInt(num);
-// 	});
-// }
-
-function splitAndConvert(stringOfNumbers, numOfValid) {
-	return stringOfNumbers.split(' ').slice(0, numOfValid).map(function(num) {
+function splitAndConvert(stringOfNumbers) {
+	return stringOfNumbers.split(' ').map(function(num) {
 		return parseInt(num);
 	});
 }
 
-
 function solve(numOfCity, distances, priceInfos) {
-	// body...
-}
+	var lowestPrice = priceInfos[0];
+	var transFee = 0;
 
+	for (var i = 0, len = distances.length; i < len; i++) {
+		var currentPrice = priceInfos[i];
+		if (currentPrice < lowestPrice) {
+			lowestPrice = currentPrice;
+		}
 
-function countDecimalPlace(n) {
-	var count = 0;
-	while(n=Math.floor(n/10)) {
-		count++;
+		transFee = stringSum( transFee, stringMul(distances[i], lowestPrice) );
 	}
-	return count;
+
+	return transFee;
 }
 
 function stringSum(a, b) { // returns String
