@@ -1,6 +1,6 @@
 (function() {
-	var input = require('fs').readFileSync('/dev/stdin').toString().split('\n');
-	var result = solve(parseInt(input[0]), splitAndConvert(input[1]), splitAndConvert(input[2]));
+	var inputs = require('fs').readFileSync('/dev/stdin').toString().split('\n');
+	var result = solve(parseInt(inputs[0]), splitAndConvert(inputs[1]), splitAndConvert(inputs[2]));
 	console.log(result);
 })();
 
@@ -75,4 +75,32 @@ function stringMul(a, b) { // returns String
 	}
 
 	return result.reverse().join('');
+}
+
+// https://stackoverflow.com/questions/3746725/create-a-javascript-array-containing-1-n
+// https://www.geeksforgeeks.org/javascript-array-fill-function/
+
+function generateInitiatedArray(length, initalValue) {
+    return Array.apply(null, {"length": length}).map(function() { return initalValue; });
+}
+
+function generateRisingArray(len, startNum) {
+    startNum = startNum || 0;
+    return Array.apply(null, {length: len}).map(function(v, i) {
+        return startNum + i;
+    });
+}
+
+function printArray(arr, bar) {
+    if (bar) {
+        var result = [];
+        for (var idx = 0, len = arr.length; idx < len; idx++) {
+            result.push(arr[idx]);
+        }
+        console.log(result.join(bar));
+    } else {
+        for (var idx = 0, len = arr.length; idx < len; idx++) {
+            console.log(arr[idx]);
+        }    
+    }
 }
