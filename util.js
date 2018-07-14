@@ -1,6 +1,6 @@
 (function() {
-	var inputs = require('fs').readFileSync('/dev/stdin').toString().split('\n');
-	var result = solve(parseInt(inputs[0]), splitAndConvert(inputs[1]), splitAndConvert(inputs[2]));
+	var rawInputs = require('fs').readFileSync('/dev/stdin').toString().split('\n');
+	var result = solve(parseInt(rawInputs[0]), splitAndConvert(rawInputs[1]), splitAndConvert(rawInputs[2]));
 	console.log(result);
 })();
 
@@ -138,4 +138,13 @@ function swap(arr, i, j){
     var temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
+}
+
+function getGCD(a, b) {
+    while(b!=0) {
+        const tmp = a % b;
+        a = b;
+        b = tmp;
+    }
+    return a;
 }
