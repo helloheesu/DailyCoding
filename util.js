@@ -1,6 +1,8 @@
 (function() {
-	var rawInputs = require('fs').readFileSync('/dev/stdin').toString().split('\n');
-	var result = solve(parseInt(rawInputs[0]), splitAndConvert(rawInputs[1]), splitAndConvert(rawInputs[2]));
+    var rawInputs = require('fs').readFileSync('/dev/stdin').toString().split('\n');
+    var inputNum = parseInt(rawInputs[0]);
+    var inputs = splitAndConvert(rawInputs[1], inputNum);
+	var result = solve(inputs);
 	console.log(result);
 })();
 
@@ -11,7 +13,7 @@ function splitAndConvert(stringOfNumbers, numOfValid) {
 }
 
 
-function solve(numOfCity, distances, priceInfos) {
+function solve(prices) {
 	// body...
 }
 
@@ -147,4 +149,9 @@ function getGCD(a, b) {
         b = tmp;
     }
     return a;
+}
+
+
+function isSquare(n) {
+    return n > 0 && Math.sqrt(n) % 1 === 0;
 }
