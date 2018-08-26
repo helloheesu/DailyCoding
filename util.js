@@ -6,6 +6,19 @@
 	console.log(result);
 })();
 
+// https://code.i-harness.com/ko-kr/q/4c65e5
+// https://nodejs.org/api/process.html#process_process_stdin
+// https://nodejs.org/api/stream.html#stream_event_data
+const stdin = process.stdin;
+stdin.setEncoding( 'utf8' );
+stdin.on( 'data', function( rawInput ){
+    const inputLines = rawInput.split('\n');
+    const [n, m] = splitAndConvert(inputLines[0], 2);
+    const quantities = splitAndConvert(inputLines[1], m);
+    const result = solve(quantities, n, m);
+    console.log(result);
+});
+
 function splitAndConvert(stringOfNumbers, numOfValid) {
 	return stringOfNumbers.split(' ').slice(0, numOfValid).map(function(num) {
 		return parseInt(num);
