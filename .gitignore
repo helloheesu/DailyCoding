@@ -1,3 +1,5 @@
 input.txt
 output.txt
 .DS_Store
+.editorconfig
+settings.json
