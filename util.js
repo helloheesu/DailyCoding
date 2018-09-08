@@ -12,17 +12,29 @@
 const stdin = process.stdin;
 stdin.setEncoding( 'utf8' );
 stdin.on( 'data', function( rawInput ){
+    // CodeForces 는 \r\n 으로 하기 때문에, String 일 때는 이걸로.
+    const inputLines = rawInput.split(/\s+/);
+
+    // 이건 Integer 일 때.
     const inputLines = rawInput.split('\n');
     const [n, m] = splitAndConvert(inputLines[0], 2);
     const quantities = splitAndConvert(inputLines[1], m);
     const result = solve(quantities, n, m);
-    console.log(result);
+    // console.log(result);
+    printArrays(array, n);
 });
 
 function splitAndConvert(stringOfNumbers, numOfValid) {
 	return stringOfNumbers.split(' ').slice(0, numOfValid).map(function(num) {
 		return parseInt(num);
 	});
+}
+
+function printArrays(array, length) {
+    length = length || array.length;
+    for (let index = 0; index < length; index++) {
+        console.log(array[index]);
+    }
 }
 
 function solve(prices) {
