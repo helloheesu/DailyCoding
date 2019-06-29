@@ -293,6 +293,15 @@ function getGCD(a, b) {
     return a;
 }
 
+function getDivisors(n) {
+  const divisors = [];
+  for (let i = 0; i * i < n; i++) {
+    if (n % i === 0) {
+      divisors.push(i);
+    }
+  }
+  return divisors;
+}
 
 function isSquare(n) {
     return n > 0 && Math.sqrt(n) % 1 === 0;
