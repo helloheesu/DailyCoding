@@ -1,4 +1,13 @@
 (function() {
+  const rawInputLines = require('fs').readFileSync('/dev/stdin').toString().split('\n');
+  // const inputCount = parseInt(rawInputLines[0]);
+  // const inputs = splitAndConvert(rawInputLines[1], inputCount);
+  const inputs = splitAndConvert(rawInputLines[0], 2);
+  const result = solve(...inputs);
+  console.log(result);
+})();
+
+(function() {
     var rawInputs = require('fs').readFileSync('/dev/stdin').toString().split('\n');
     // var rawInputs = require('fs').readFileSync('/dev/stdin').toString().split(/\s+/);
     var inputNum = parseInt(rawInputs[0]);
